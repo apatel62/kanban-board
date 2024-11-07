@@ -11,7 +11,9 @@ class AuthService {
   loggedIn() {
     // TODO: return a value that indicates if the user is logged in
     const token = this.getToken();
-    if(token) {
+    if (token === 'undefined'){
+      localStorage.removeItem('token');
+    }else if(token) {
       const isExpired = this.isTokenExpired(token);
       return token && !isExpired;
     } else {
